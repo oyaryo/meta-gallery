@@ -1,83 +1,177 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
+  <div>
+    <v-container>
+      <div>
+        <p
+          class="mt-4 mb-0 text-xs md:text-lg tracking-wider p-2 font-serif text-center"
+        >
+          Private Gallery on Metaverse
+        </p>
+        <p class="mt-0 text-6xl md:text-9xl font-serif text-center">
+          META GALLERY
+        </p>
+      </div>
+    </v-container>
+
+    <v-container>
+      <div class="flex justify-center">
+        <div class="mt-8 w-10/12 border border-dotted border-gray-400 bg-gray-50">
+          <div class="text-center font-bold">What's New</div>
+          <div v-for="content in contents" :key="content.id" class="m-2">
+            <nuxt-link :to="`/${content.id}`">
+              {{ content.title }}({{ content.publishedAt | dayFormat }})
+            </nuxt-link>
           </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
+        </div>
+      </div>
+    </v-container>
+
+    <v-container>
+      <div>
+        <v-row class="mt-16">
+          <v-col cols="8">
+            <p class="mb-0 md:text-6xl text-4xl font-serif">
+              WHAT is META GALLERY
+            </p>
+            <p class="mt-0 text-xs">メタギャラリーとは</p>
+          </v-col>
+          <v-col cols="4"></v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="4"></v-col>
+          <v-col cols="8">
+            <p>
+              ********** ********** ********** ********** ********** **********
+              ********** ********** ********** ********** ********** **********
+              ********** ********** ********** ********** ********** **********
+              ********** ********** ********** ********** ********** **********
+              ********** ********** ********** ********** ********** **********
+              ********** ********** ********** ********** ********** **********
+              ********** ********** ********** ********** ********** **********
+              ********** ********** ********** **********
+            </p>
+          </v-col>
+        </v-row>
+        <v-row class="mt-16">
+          <v-col cols="8"
+            ><p class="mb-0 md:text-6xl text-4xl font-serif">VOICE</p>
+            <p class="mt-0 text-xs">著名人からのメッセージ</p></v-col
           >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
+          <v-col cols="4"></v-col>
+        </v-row>
+        <v-row>
+          <v-row>
+            <v-col cols="2"></v-col>
+            <v-col cols="3"></v-col>
+            <v-col cols="4"
+              ><p class="mb-0">著名人の氏名</p>
+              <p class="mt-0 text-xs">auther name</p>
+              <p>
+                ********** ********** ********** ********** **********
+                ********** ********** ********** **********
+              </p></v-col
+            >
+            <v-col cols="3"></v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="2"></v-col>
+            <v-col cols="4"
+              ><p class="mb-0">著名人の氏名</p>
+              <p class="mt-0 text-xs">auther name</p>
+              <p>
+                ********** ********** ********** ********** **********
+                ********** ********** ********** **********
+              </p></v-col
+            >
+            <v-col cols="2"></v-col>
+            <v-col cols="4"
+              ><p class="mb-0">著名人の氏名</p>
+              <p class="mt-0 text-xs">auther name</p>
+              <p>
+                ********** ********** ********** ********** **********
+                ********** ********** ********** **********
+              </p></v-col
+            >
+          </v-row>
+        </v-row>
+        <v-row class="dotted-border-bottom mt-16">
+          <v-col cols="8"
+            ><p class="mb-0 md:text-6xl text-4xl font-serif">CONTENTS</p>
+            <p class="mt-0 text-xs">コンテンツ紹介</p></v-col
           >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+          <v-col cols="4"></v-col>
+        </v-row>
+        <v-row class="border border-dotted">
+          <v-col cols="4"></v-col>
+          <v-col cols="8">
+            <div class="md:flex">
+              <div>
+                <p class="text-lg mb-0">META GALLERY</p>
+                <p class="text-xs mt-0">メタギャラリー</p>
+                <p>
+                  ********** ********** ********** ********** **********
+                  ********** ********** ********** ********** **********
+                </p>
+              </div>
+              <div>
+                <img
+                  src="@/assets/13852715_MotionElements_digital-gallery-video-wall_converted_a-0060.jpg"
+                  alt=""
+                  style="
+                     {
+                      width: 150px;
+                      height: 150px;
+                      object-fit: cover;
+                    }
+                  "
+                />
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+      </div>
+    </v-container>
+  </div>
 </template>
 
 <script>
+import axios from "axios";
+import MyMixin from "@/mixins/my-mixin";
+
 export default {
-  name: 'IndexPage'
-}
+  name: "IndexPage",
+
+  mixins: [MyMixin],
+
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters["auth/getLoggedIn"];
+    },
+  },
+
+  async asyncData() {
+    const { data } = await axios.get(
+      "https://conditionyellow.microcms.io/api/v1/news",
+      {
+        headers: {
+          "X-MICROCMS-API-KEY": "1834e7af205d486994be3447af91fbac50b0",
+        },
+      }
+    );
+    return data;
+  },
+};
 </script>
+
+<style scoped>
+a:link {
+  color: #1f2937;
+}
+a:visited {
+  color: #64748b
+}
+
+.dotted-border-bottom {
+  border-bottom: 1px dotted #cbd5e0;
+}
+</style>
