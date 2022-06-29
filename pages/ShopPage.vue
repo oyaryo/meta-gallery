@@ -17,6 +17,15 @@
       <v-row>
         <v-col v-for="product in products" :key="product.id">
           <v-card class="mx-auto" max-width="250">
+            <stripe-checkout
+              ref="checkoutRef"
+              mode="payment"
+              :pk="publishableKey"
+              :line-items="lineItems"
+              :success-url="successURL"
+              :cancel-url="cancelURL"
+              @loading="(v) => (loading = v)"
+            />
             <v-img
               v-if="product.thumbnailUrl"
               :src="product.thumbnailUrl"
@@ -34,22 +43,37 @@
             <p class="text-right mx-8">¥{{ product.price }}-.</p>
 
             <div class="flex justify-center">
-              <a :href="product.paymentUrl" target="_blank"><v-btn color="success" class="m-4">購入</v-btn></a>
+              <v-btn color="success" class="m-4" @click="submit">購入</v-btn>
             </div>
           </v-card>
         </v-col>
       </v-row>
+      {{ publishableKey }}
     </v-container>
   </div>
 </template>
 
 <script>
 import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { StripeCheckout } from "@vue-stripe/vue-stripe";
 
 export default {
+  components: {
+    StripeCheckout,
+  },
   data() {
+    this.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
     return {
       products: [],
+      loading: false,
+      lineItems: [
+        {
+          price: "price_1LFX6QAQC2RXpTXkYQL5TK0C", // The id of the one-time price you created in your Stripe dashboard
+          quantity: 1,
+        },
+      ],
+      successURL: "http://localhost:3000/success",
+      cancelURL: "http://localhost:3000/cancel",
     };
   },
 
@@ -63,6 +87,13 @@ export default {
     } catch (e) {
       console.error("error: ", e);
     }
+  },
+
+  methods: {
+    submit() {
+      // You will be redirected to Stripe's secure checkout page
+      this.$refs.checkoutRef.redirectToCheckout();
+    },
   },
 };
 </script>
