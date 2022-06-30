@@ -73,7 +73,7 @@ export default {
         },
       ],
       successURL: "http://localhost:3000/success",
-      cancelURL: "http://localhost:3000",
+      cancelURL: "http://localhost:3000/cancel",
       email: "",
     };
   },
