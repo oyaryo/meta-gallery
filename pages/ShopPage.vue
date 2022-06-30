@@ -32,28 +32,29 @@
             <v-card-subtitle> {{ product.description }} </v-card-subtitle>
 
             <p class="text-right mx-8">¥{{ product.price }}-.</p>
-
-            <div class="flex justify-center">
-              <stripe-checkout
-                ref="checkoutRef"
-                mode="payment"
-                :pk="publishableKey"
-                :line-items="lineItems"
-                :success-url="successURL"
-                :cancel-url="cancelURL"
-                @loading="(v) => (loading = v)"
-              />
-              <v-btn color="success" class="m-4" @click="submit">購入</v-btn>
-            </div>
           </v-card>
         </v-col>
       </v-row>
+      <div class="flex justify-center">
+        <stripe-checkout
+          ref="checkoutRef"
+          mode="payment"
+          :pk="publishableKey"
+          :customerEmail="email"
+          :line-items="lineItems"
+          :success-url="successURL"
+          :cancel-url="cancelURL"
+          @loading="(v) => (loading = v)"
+        />
+        <v-btn color="success" class="m-4" @click="submit">購入</v-btn>
+      </div>
     </v-container>
   </div>
 </template>
 
 <script>
 import { StripeCheckout } from "@vue-stripe/vue-stripe";
+import { getAuth } from "firebase/auth";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 export default {
@@ -67,12 +68,13 @@ export default {
       loading: false,
       lineItems: [
         {
-          price: "price_1LFuaMAQC2RXpTXktlnY51g8", // The id of the one-time price you created in your Stripe dashboard
+          price: "price_1LGFOsAQC2RXpTXkrv3rIbEf", // The id of the one-time price you created in your Stripe dashboard
           quantity: 1,
         },
       ],
       successURL: "http://localhost:3000/success",
-      cancelURL: "http://localhost:3000",
+      cancelURL: "http://localhost:3000/cancel",
+      email: "",
     };
   },
 
@@ -83,6 +85,11 @@ export default {
       querySnapshot.forEach((doc) => {
         this.products.push(doc.data());
       });
+
+      // Stripeへ渡すログインユーザーのメールアドレス情報を取得
+      const auth = getAuth();
+      const user = auth.currentUser;
+      this.email = user.email;
     } catch (e) {
       console.error("error: ", e);
     }
