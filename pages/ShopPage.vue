@@ -35,21 +35,20 @@
           </v-card>
         </v-col>
       </v-row>
-      
     </v-container>
     <div class="flex justify-center">
-        <stripe-checkout
-          ref="checkoutRef"
-          mode="payment"
-          :pk="publishableKey"
-          :customerEmail="email"
-          :line-items="lineItems"
-          :success-url="successURL"
-          :cancel-url="cancelURL"
-          @loading="(v) => (loading = v)"
-        />
-        <v-btn color="success" class="m-4" @click="submit">購入</v-btn>
-      </div>
+      <stripe-checkout
+        ref="checkoutRef"
+        mode="payment"
+        :pk="publishableKey"
+        :customerEmail="email"
+        :line-items="lineItems"
+        :success-url="successURL"
+        :cancel-url="cancelURL"
+        @loading="(v) => (loading = v)"
+      />
+      <v-btn color="success" class="m-4" @click="submit">購入</v-btn>
+    </div>
   </div>
 </template>
 
