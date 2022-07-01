@@ -35,7 +35,9 @@
           </v-card>
         </v-col>
       </v-row>
-      <div class="flex justify-center">
+      
+    </v-container>
+    <div class="flex justify-center">
         <stripe-checkout
           ref="checkoutRef"
           mode="payment"
@@ -48,7 +50,6 @@
         />
         <v-btn color="success" class="m-4" @click="submit">購入</v-btn>
       </div>
-    </v-container>
   </div>
 </template>
 
@@ -73,7 +74,7 @@ export default {
         },
       ],
       successURL: "http://localhost:3000/success",
-      cancelURL: "http://localhost:3000/cancel",
+      cancelURL: "http://localhost:3000",
       email: "",
     };
   },
