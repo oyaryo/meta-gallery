@@ -73,8 +73,8 @@ export default {
           quantity: 1,
         },
       ],
-      successURL: "http://localhost:3000/success",
-      cancelURL: "http://localhost:3000",
+      successURL: "https://meta-gallary.web.app/success",
+      cancelURL: "https://meta-gallary.web.app/cancel",
       email: "",
     };
   },

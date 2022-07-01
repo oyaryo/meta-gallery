@@ -15,8 +15,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: "%s - meta-gallery",
-    title: "meta-gallery",
+    titleTemplate: "%s - meta-gallary",
+    title: "meta-gallary",
     htmlAttrs: {
       lang: "en",
     },
@@ -67,7 +67,7 @@ export default {
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    customVariables: ["~/assets/variables.scss"],
+    // customVariables: ["~/assets/variables.scss"],
     theme: {
       dark: false,
       themes: {
