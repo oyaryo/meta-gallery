@@ -37,12 +37,12 @@ export default {
       const db = getFirestore();
       const querySnapshot = await getDocs(collection(db, "tickets"));
       querySnapshot.forEach((doc) => {
-        console.log(doc.data().email);
+        // console.log(doc.data().email);
         if (doc.data().email === this.email) {
-          console.log(doc.data());
+          // console.log(doc.data());
           this.$router.push("ContentPage");
         } else {
-          console.log("No such document!");
+          // console.log("No such document!");
           this.$router.push("ShopPage");
         }
       });
