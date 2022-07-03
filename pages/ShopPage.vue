@@ -32,24 +32,24 @@
             <v-card-subtitle> {{ product.description }} </v-card-subtitle>
 
             <p class="text-right mx-8">¥{{ product.price }}-.</p>
+
+            <div class="flex justify-center">
+              <stripe-checkout
+                ref="checkoutRef"
+                mode="payment"
+                :pk="publishableKey"
+                :customerEmail="email"
+                :line-items="lineItems"
+                :success-url="successURL"
+                :cancel-url="cancelURL"
+                @loading="(v) => (loading = v)"
+              />
+              <v-btn color="success" class="m-4" @click="submit">購入</v-btn>
+            </div>
           </v-card>
         </v-col>
       </v-row>
     </v-container>
-    <div class="flex justify-center">
-      <stripe-checkout
-        ref="checkoutRef"
-        mode="payment"
-        :pk="publishableKey"
-        :customerEmail="email"
-        :line-items="lineItems"
-        :success-url="successURL"
-        :cancel-url="cancelURL"
-        @loading="(v) => (loading = v)"
-      />
-      <v-btn color="success" class="m-4" @click="submit">購入</v-btn>
-    </div>
-    {{ publishableKey }}
   </div>
 </template>
 
@@ -64,7 +64,8 @@ export default {
   },
   data() {
     // this.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
-    this.publishableKey = 'pk_live_51LDPHXAQC2RXpTXkKmUQwDPzqlZhyyFZg8JLj7HQGdP0JuDpv4gGl4ooqp2SXIz0SIFkZg0zqJvF5qrDOo0KN0NN00gKVw9eAM';
+    this.publishableKey =
+      "pk_live_51LDPHXAQC2RXpTXkKmUQwDPzqlZhyyFZg8JLj7HQGdP0JuDpv4gGl4ooqp2SXIz0SIFkZg0zqJvF5qrDOo0KN0NN00gKVw9eAM";
     return {
       products: [],
       loading: false,
