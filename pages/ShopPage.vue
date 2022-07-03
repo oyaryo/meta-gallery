@@ -49,6 +49,7 @@
       />
       <v-btn color="success" class="m-4" @click="submit">購入</v-btn>
     </div>
+    {{ publishableKey }}
   </div>
 </template>
 
