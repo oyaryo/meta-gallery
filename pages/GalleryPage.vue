@@ -1,11 +1,15 @@
 <template>
   <div>
     <v-container>
-      <div class="flex">
-        <div class="w-3/12 h-24 bg-meta-gallery-100"></div>
-        <div class="w-3/12 h-24 bg-meta-gallery-200"></div>
-        <div class="w-3/12 h-24 bg-meta-gallery-300"></div>
-        <div class="w-3/12 h-24 bg-meta-gallery-400"></div>
+      <div>
+        <p class="mb-0 text-6xl md:text-9xl font-serif text-center">
+          MY PRIVATE GALLERY
+        </p>
+        <p
+          class="mt-0 text-lg md:text-xl tracking-wider p-2 font-serif text-center"
+        >
+          プライベートギャラリー
+        </p>
       </div>
       <div class="text-center my-8">
         <v-btn color="primary" class="" @click="checkTicket">ENTER</v-btn>

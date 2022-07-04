@@ -14,7 +14,7 @@
 
         <v-form ref="form" v-model="valid">
           <v-text-field
-            v-model="email"
+            v-model.lazy="email"
             :rules="emailRules"
             label="メールアドレス"
             required

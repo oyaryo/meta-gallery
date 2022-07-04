@@ -13,13 +13,13 @@
         </div>
         <v-form ref="form" v-model="valid">
           <v-text-field
-            v-model="displayName"
+            v-model.lazy="displayName"
             label="表示名"
             :rules="nameRules"
             required
           />
           <v-text-field
-            v-model="email"
+            v-model.lazy="email"
             label="メールアドレス"
             :rules="emailRules"
             required

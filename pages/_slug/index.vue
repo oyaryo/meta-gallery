@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-container>
-      <h1 class="title">{{ data.title }}</h1>
-      <p class="publishedAt">{{ data.publishedAt | dayFormat }}</p>
-      <div class="post" v-html="data.content"></div>
+      <h1 class="text-2xl font-bold p-4">{{ data.title }}</h1>
+      <p class="p-4">{{ data.publishedAt | dayFormat }}</p>
+      <div class="p-4" v-html="data.content"></div>
     </v-container>
   </div>
 </template>

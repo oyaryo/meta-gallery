@@ -32,12 +32,11 @@
             <v-card-subtitle> {{ product.description }} </v-card-subtitle>
 
             <p class="text-right mx-8">¥{{ product.price }}-.</p>
-
-            <div class="flex justify-center">
-              
           </v-card>
         </v-col>
-        <stripe-checkout
+      </v-row>
+      <div class="flex justify-center">
+              <stripe-checkout
                 ref="checkoutRef"
                 mode="payment"
                 :pk="publishableKey"
@@ -49,7 +48,6 @@
               />
               <v-btn color="success" class="m-4" @click="submit">購入</v-btn>
             </div>
-      </v-row>
     </v-container>
   </div>
 </template>
