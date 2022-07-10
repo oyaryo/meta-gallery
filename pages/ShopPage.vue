@@ -36,18 +36,18 @@
         </v-col>
       </v-row>
       <div class="flex justify-center">
-              <stripe-checkout
-                ref="checkoutRef"
-                mode="payment"
-                :pk="publishableKey"
-                :customerEmail="email"
-                :line-items="lineItems"
-                :success-url="successURL"
-                :cancel-url="cancelURL"
-                @loading="(v) => (loading = v)"
-              />
-              <v-btn color="success" class="m-4" @click="submit">購入</v-btn>
-            </div>
+        <stripe-checkout
+          ref="checkoutRef"
+          mode="payment"
+          :pk="publishableKey"
+          :customerEmail="email"
+          :line-items="lineItems"
+          :success-url="successURL"
+          :cancel-url="cancelURL"
+          @loading="(v) => (loading = v)"
+        />
+        <v-btn color="success" class="m-4" @click="submit">購入</v-btn>
+      </div>
     </v-container>
   </div>
 </template>
@@ -56,6 +56,7 @@
 import { StripeCheckout } from "@vue-stripe/vue-stripe";
 import { getAuth } from "firebase/auth";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFunctions, httpsCallable } from "firebase/functions";
 
 export default {
   components: {
@@ -63,9 +64,8 @@ export default {
   },
   data() {
     // this.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
-    // this.publishableKey =
-    //   "pk_live_51LDPHXAQC2RXpTXkKmUQwDPzqlZhyyFZg8JLj7HQGdP0JuDpv4gGl4ooqp2SXIz0SIFkZg0zqJvF5qrDOo0KN0NN00gKVw9eAM";
-    this.publishableKey = fetch('https://us-central1-meta-gallary.cloudfunctions.net/printenvStripe');
+    this.publishableKey =
+      "pk_live_51LDPHXAQC2RXpTXkKmUQwDPzqlZhyyFZg8JLj7HQGdP0JuDpv4gGl4ooqp2SXIz0SIFkZg0zqJvF5qrDOo0KN0NN00gKVw9eAM";
     return {
       products: [],
       loading: false,
@@ -78,7 +78,21 @@ export default {
       successURL: "https://meta-gallary.web.app/success",
       cancelURL: "https://meta-gallary.web.app/cancel",
       email: "",
+      publishableKey: "",
     };
+  },
+
+  created() {
+    const functions = getFunctions();
+    const printenvStripe = httpsCallable(functions, "printenvStripe");
+    printenvStripe()
+      .then((result) => {
+        this.publishableKey = result.data;
+        console.log(result.data);
+      })
+      .catch((e) => {
+        console.log("error: ", e);
+      });
   },
 
   async mounted() {
