@@ -8,6 +8,13 @@ export default {
 
   router: {
     middleware: "authenticated",
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: "notFound",
+        path: "*",
+        component: resolve(__dirname, "pages/index.vue"),
+      });
+    },
   },
 
   // Target: https://go.nuxtjs.dev/config-target
