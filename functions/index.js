@@ -23,3 +23,7 @@ exports.fetchTickets = functions.https.onRequest(async (request, response) => {
     response.status(500).send(e);
   }
 });
+
+exports.printenvStripe = functions.https.onRequest((req, res) => {
+  res.send(functions.config().stripe.apikey);
+});
