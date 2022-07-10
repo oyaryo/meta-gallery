@@ -63,8 +63,9 @@ export default {
   },
   data() {
     // this.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
-    this.publishableKey =
-      "pk_live_51LDPHXAQC2RXpTXkKmUQwDPzqlZhyyFZg8JLj7HQGdP0JuDpv4gGl4ooqp2SXIz0SIFkZg0zqJvF5qrDOo0KN0NN00gKVw9eAM";
+    // this.publishableKey =
+    //   "pk_live_51LDPHXAQC2RXpTXkKmUQwDPzqlZhyyFZg8JLj7HQGdP0JuDpv4gGl4ooqp2SXIz0SIFkZg0zqJvF5qrDOo0KN0NN00gKVw9eAM";
+    this.publishableKey = functions.config().stripe;
     return {
       products: [],
       loading: false,
