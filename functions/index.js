@@ -29,5 +29,14 @@ exports.printenvStripe = functions.https.onRequest((req, res) => {/* eslint-disa
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST");
 
-  res.send(functions.config().stripe.apikey);
+  const config = functions.config();
+  if (config.stripe && config.stripe.apikey) {
+    res.send(config.stripe.apikey);
+  } else {
+    res.send("Not Found Config");
+  }
+});
+
+exports.getStripeKey = functions.https.onCall((data, context) => {
+  return functions.config().stripe.apikey;
 });
