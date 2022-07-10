@@ -24,6 +24,10 @@ exports.fetchTickets = functions.https.onRequest(async (request, response) => {
   }
 });
 
-exports.printenvStripe = functions.https.onRequest((req, res) => {
+exports.printenvStripe = functions.https.onRequest((req, res) => {/* eslint-disable-line max-len */
+  res.set("Access-Control-Allow-Headers", "*");
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST");
+
   res.send(functions.config().stripe.apikey);
 });

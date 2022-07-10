@@ -64,8 +64,9 @@ export default {
   },
   data() {
     // this.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
-    this.publishableKey =
-      "pk_live_51LDPHXAQC2RXpTXkKmUQwDPzqlZhyyFZg8JLj7HQGdP0JuDpv4gGl4ooqp2SXIz0SIFkZg0zqJvF5qrDOo0KN0NN00gKVw9eAM";
+    // this.publishableKey =
+    //   "pk_live_51LDPHXAQC2RXpTXkKmUQwDPzqlZhyyFZg8JLj7HQGdP0JuDpv4gGl4ooqp2SXIz0SIFkZg0zqJvF5qrDOo0KN0NN00gKVw9eAM";
+    this.publishableKey = this.getPublishableKey();
     return {
       products: [],
       loading: false,
@@ -78,21 +79,7 @@ export default {
       successURL: "https://meta-gallary.web.app/success",
       cancelURL: "https://meta-gallary.web.app/cancel",
       email: "",
-      publishableKey: "",
     };
-  },
-
-  created() {
-    const functions = getFunctions();
-    const printenvStripe = httpsCallable(functions, "printenvStripe");
-    printenvStripe()
-      .then((result) => {
-        this.publishableKey = result.data;
-        console.log(result.data);
-      })
-      .catch((e) => {
-        console.log("error: ", e);
-      });
   },
 
   async mounted() {
@@ -115,6 +102,18 @@ export default {
     submit() {
       // You will be redirected to Stripe's secure checkout page
       this.$refs.checkoutRef.redirectToCheckout();
+    },
+    getPublishableKey() {
+      const functions = getFunctions();
+      const printenvStripe = httpsCallable(functions, "printenvStripe");
+      printenvStripe()
+        .then((result) => {
+          console.log(result.data);
+        })
+        .catch((error) => {
+          console.log("error: ", error);
+        });
+      return "";
     },
   },
 };
