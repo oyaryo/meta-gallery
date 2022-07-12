@@ -86,7 +86,11 @@ export default {
     getStripeKey()
       .then((result) => {
         console.log(result.data);
-        this.publishableKey = result.data;
+        if (result.data === "Not Found API Key.") {
+          throw "Not Found API Key.";
+        } else {
+          this.publishableKey = result.data;
+        }
       })
       .catch((e) => {
         console.log("error: ", e);
@@ -113,7 +117,7 @@ export default {
     submit() {
       // You will be redirected to Stripe's secure checkout page
       this.$refs.checkoutRef.redirectToCheckout();
-    }
+    },
   },
 };
 </script>

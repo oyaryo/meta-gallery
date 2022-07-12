@@ -25,5 +25,13 @@ exports.fetchTickets = functions.https.onRequest(async (request, response) => {
 });
 
 exports.getStripeKey = functions.https.onCall((data, context) => {
-  return functions.config().stripe.apikey;
+  if (functions.config().stripe.apikey) {
+    return functions.config().stripe.apikey;
+  } else {
+    return "Not Found API Key.";
+  }
+});
+
+exports.hello = functions.https.onRequest((request, response) => {
+  response.send(`Hello: ${process.env.STRIPE_PUBLISHABLE_KEY}`);
 });

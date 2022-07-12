@@ -130,7 +130,7 @@ export default {
           this.email = user.email;
           this.createdAt = user.metadata.creationTime;
           this.getUpdatedAt();
-          console.log(user);
+          // console.log(user);
         } else {
           console.log("No user data.");
         }
