@@ -1059,6 +1059,13 @@
   dependencies:
     "regenerator-runtime" "^0.13.4"
 
+"@babel/runtime@~7.16.0":
+  "integrity" "sha512-9E9FJowqAsytyOY6LG+1KuueckRL+aQW+mKvXRXnuFGyRAyepJPmEo9vgMfXUA6O9u3IeEdv9MAkppFcaQwogQ=="
+  "resolved" "https://registry.npmjs.org/@babel/runtime/-/runtime-7.16.7.tgz"
+  "version" "7.16.7"
+  dependencies:
+    "regenerator-runtime" "^0.13.4"
+
 "@babel/template@^7.10.4":
   "integrity" "sha512-ZCjD27cGJFUB6nmCB1Enki3r+L5kJveX9pq1SvAUKoICy6CZ9yD8xO086YXdYhvNjBdnekm4ZnaP5yC8Cs/1tA=="
   "resolved" "https://registry.npmjs.org/@babel/template/-/template-7.10.4.tgz"
@@ -14627,6 +14634,13 @@
   "version" "2.0.0"
   dependencies:
     "crypto-random-string" "^2.0.0"
+
+"unity-webgl@^2.0.5":
+  "integrity" "sha512-doMMk8+DTX3vlHjjhJhGZH9mfZiSYgBZFkhkt+NpmuIHIXhYYXXXWgpiOvnq8e9D09/86CvQ94wpru/0q9w7Cg=="
+  "resolved" "https://registry.npmjs.org/unity-webgl/-/unity-webgl-2.0.5.tgz"
+  "version" "2.0.5"
+  dependencies:
+    "@babel/runtime" "~7.16.0"
 
 "universal-analytics@^0.5.3":
   "integrity" "sha512-HXSMyIcf2XTvwZ6ZZQLfxfViRm/yTGoRgDeTbojtq6rezeyKB0sTBcKH2fhddnteAHRcHiKgr/ACpbgjGOC6RQ=="
