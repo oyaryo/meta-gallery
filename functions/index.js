@@ -25,5 +25,9 @@ exports.fetchTickets = functions.https.onRequest(async (request, response) => {
 });
 
 exports.getStripeKey = functions.https.onCall((data, context) => {
-  return functions.config().stripe.apikey;
+  return process.env.STRIPE_PUBLISHABLE_KEY;
+});
+
+exports.hello = functions.https.onRequest((request, response) => {
+  response.send(`Hello: ${process.env.STRIPE_PUBLISHABLE_KEY}`);
 });
