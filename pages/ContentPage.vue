@@ -27,6 +27,9 @@ export default {
   components: {
     Unity: UnityWebgl.vueComponent,
   },
+
+  middleware: "checkTicket",
+  
   data() {
     return {
       unityContext: Unity,

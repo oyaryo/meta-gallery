@@ -3,24 +3,36 @@
     <v-container>
       <div>
         <p class="mb-0 text-6xl md:text-9xl font-serif">INFORMATION</p>
-        <p class="mt-0 text-lg md:text-2xl tracking-wider p-2 font-serif">最新情報</p>
+        <p class="mt-0 text-lg md:text-2xl tracking-wider p-2 font-serif">
+          最新情報
+        </p>
       </div>
     </v-container>
 
     <v-container>
       <div class="my-16">
-        <hr class="border border-1 border-dotted border-gray-300">
+        <hr class="border border-1 border-dotted border-gray-300" />
         <div class="flex" v-for="content in contents" :key="content.id">
           <div class="w-4/12"></div>
           <div class="w-8/12 p-4 bg-gray-100 news-border">
-            <p class="font-sans text-xs">DATE {{ content.publishedAt | dayFormat }}</p>
-            <p class=""><nuxt-link :to="`/${content.id}`">{{ content.title }}</nuxt-link></p>
+            <p class="font-sans text-xs">
+              DATE {{ content.publishedAt | dayFormat }}
+            </p>
+            <p class="">
+              <nuxt-link :to="`/${content.id}`">{{ content.title }}</nuxt-link>
+            </p>
             <p class="font-serif truncate">
               {{ content.overview }}
             </p>
           </div>
         </div>
-          <hr class="border border-1 border-dotted border-gray-300"/>
+        <hr class="border border-1 border-dotted border-gray-300" />
+      </div>
+    </v-container>
+
+    <v-container>
+      <div class="text-center">
+        <v-pagination v-model="page" :length="6" @input="getNumber"></v-pagination>
       </div>
     </v-container>
   </div>
@@ -28,7 +40,7 @@
 
 <script>
 import axios from "axios";
-import MyMixin from '@/mixins/my-mixin';
+import MyMixin from "@/mixins/my-mixin";
 
 export default {
   mixins: [MyMixin],
@@ -44,7 +56,18 @@ export default {
     );
     return data;
   },
-}
+
+  data(){
+    return {
+      page: 1,
+    }
+  },
+  methods: {
+    getNumber(number){
+      console.log(number);
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -52,7 +75,7 @@ a:link {
   color: #1f2937;
 }
 a:visited {
-  color: #64748b
+  color: #64748b;
 }
 
 .news-border {

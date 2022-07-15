@@ -14,6 +14,8 @@
     </v-container>
 
     <v-container>
+      <p class="text-center">ギャラリー内の特別展をご覧になる場合はチケットの購入が必要となります。<br />
+      以下のチケットをご購入ください。</p>
       <v-row>
         <v-col v-for="product in products" :key="product.id">
           <v-card class="mx-auto" max-width="250">
@@ -85,7 +87,6 @@ export default {
     const getStripeKey = httpsCallable(functions, "getStripeKey");
     getStripeKey()
       .then((result) => {
-        console.log(result.data);
         this.publishableKey = result.data;
       })
       .catch((e) => {

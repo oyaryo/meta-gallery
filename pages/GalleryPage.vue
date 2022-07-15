@@ -12,45 +12,20 @@
         </p>
       </div>
       <div class="text-center my-8">
-        <v-btn color="primary" class="" @click="checkTicket">ENTER</v-btn>
+        <p>ここから先は有料の特別展となります。<br />
+        チケットをお持ちのお客様は、以下のENTERボタンからお入りください。</p>
+        <v-btn color="primary" @click="pushEnter">ENTER</v-btn>
       </div>
     </v-container>
   </div>
 </template>
 
 <script>
-import { getAuth } from "firebase/auth";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
-
 export default {
-  data() {
-    return {
-      hasTicket: false,
-      email: "",
-    };
-  },
-  mounted() {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    this.email = user.email;
-  },
   methods: {
-    async checkTicket() {
-      console.log("checkTicket call");
-
-      const db = getFirestore();
-      const querySnapshot = await getDocs(collection(db, "tickets"));
-      querySnapshot.forEach((doc) => {
-        // console.log(doc.data().email);
-        if (doc.data().email === this.email) {
-          // console.log(doc.data());
-          this.$router.push("ContentPage");
-        } else {
-          // console.log("No such document!");
-          this.$router.push("ShopPage");
-        }
-      });
-    },
-  },
-};
+    pushEnter(){
+      this.$router.push("ContentPage");
+    }
+  }
+}
 </script>

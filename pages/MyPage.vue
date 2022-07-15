@@ -130,7 +130,6 @@ export default {
           this.email = user.email;
           this.createdAt = user.metadata.creationTime;
           this.getUpdatedAt();
-          // console.log(user);
         } else {
           console.log("No user data.");
         }
@@ -199,9 +198,10 @@ export default {
 
     // mountedで呼んで更新日をセットする
     async getUpdatedAt() {
-      const auth = getAuth(this.$firebase);
-      const db = getFirestore(this.$firebase);
-      const docRef = doc(db, "users", auth.currentUser.uid);
+      const auth = getAuth();
+      const user = auth.currentUser;
+      const db = getFirestore();
+      const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         let timestamp = docSnap.data().updatedAt;
