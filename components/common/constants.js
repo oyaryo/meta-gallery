@@ -6,19 +6,19 @@ export default {
     },
     {
       name: "お知らせ",
-      url: "NewsPage",
+      url: "/NewsPage",
     },
     {
       name: "ギャラリー",
-      url: "GalleryPage",
+      url: "/GalleryPage",
     },
     {
       name: "ショップ",
-      url: "ShopPage",
+      url: "/ShopPage",
     },
     {
       name: "マイページ",
-      url: "MyPage",
+      url: "/MyPage",
     },
     // {
     //   name: "ログアウト",

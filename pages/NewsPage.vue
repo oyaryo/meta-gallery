@@ -31,9 +31,12 @@
     </v-container>
 
     <v-container>
-      <div class="text-center">
-        <v-pagination v-model="page" :length="6" @input="getNumber"></v-pagination>
-      </div>
+      <Pagination
+        :pager="pager"
+        :current="Number(page)"
+        :category="selectedCategory"
+        class="text-center"
+      />
     </v-container>
   </div>
 </template>
@@ -45,28 +48,53 @@ import MyMixin from "@/mixins/my-mixin";
 export default {
   mixins: [MyMixin],
 
-  async asyncData() {
+  // async asyncData() {
+  //   const { data } = await axios.get(
+  //     "https://conditionyellow.microcms.io/api/v1/news",
+  //     {
+  //       headers: {
+  //         "X-MICROCMS-API-KEY": "1834e7af205d486994be3447af91fbac50b0",
+  //       },
+  //     }
+  //   );
+  //   return data;
+  // },
+
+  async asyncData({ params }) {
+    const page = params.p || "1";
+    const categoryId = params.categoryId;
+    const limit = 3;
+
     const { data } = await axios.get(
-      "https://conditionyellow.microcms.io/api/v1/news",
+      `https://conditionyellow.microcms.io/api/v1/news?limit=${limit}${
+        categoryId === undefined ? "" : `&filters=category[equals]${categoryId}`
+      }&offset=${(page - 1) * limit}`,
       {
         headers: {
           "X-MICROCMS-API-KEY": "1834e7af205d486994be3447af91fbac50b0",
         },
       }
     );
-    return data;
-  },
+    const categories = await axios.get(
+      `https://conditionyellow.microcms.io/api/v1/categories?limit=100`,
+      {
+        headers: {
+          "X-MICROCMS-API-KEY": "1834e7af205d486994be3447af91fbac50b0",
+        },
+      }
+    );
+    const selectedCategory =
+      categoryId !== undefined
+        ? categories.data.contents.find((content) => content.id === categoryId)
+        : undefined;
 
-  data(){
     return {
-      page: 1,
-    }
+      ...data,
+      selectedCategory,
+      page,
+      pager: [...Array(Math.ceil(data.totalCount / limit)).keys()],
+    };
   },
-  methods: {
-    getNumber(number){
-      console.log(number);
-    }
-  }
 };
 </script>
 

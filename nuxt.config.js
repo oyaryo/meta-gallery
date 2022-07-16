@@ -1,6 +1,6 @@
-require('dotenv').config()
-const { STRIPE_PUBLISHABLE_KEY } = process.env
-import colors from 'vuetify/es5/util/colors'
+require("dotenv").config();
+const { STRIPE_PUBLISHABLE_KEY } = process.env;
+import colors from "vuetify/es5/util/colors";
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -10,9 +10,9 @@ export default {
     middleware: "authenticated",
     extendRoutes(routes, resolve) {
       routes.push({
-        name: "notFound",
-        path: "*",
-        component: resolve(__dirname, "pages/index.vue"),
+        path: "/NewsPage/:p",
+        component: resolve(__dirname, "pages/NewsPage.vue"),
+        name: "newspage",
       });
     },
   },
@@ -58,6 +58,28 @@ export default {
       apiKey: "1834e7af205d486994be3447af91fbac50b0",
     },
     mode: process.env.NODE_ENV === "production" ? "server" : "all",
+  },
+
+  generate: {
+    async routes() {
+      const limit = 10;
+      const range = (start, end) =>
+        [...Array(end - start + 1)].map((_, i) => start + i);
+
+      // 一覧のページング
+      const pages = await axios
+        .get(`https://conditionyellow.microcms.io/api/v1/news?limit=0`, {
+          headers: {
+            "X-MICROCMS-API-KEY": "1834e7af205d486994be3447af91fbac50b0",
+          },
+        })
+        .then((res) =>
+          range(1, Math.ceil(res.data.totalCount / limit)).map((p) => ({
+            route: `/NewsPage/${p}`,
+          }))
+        );
+      return pages;
+    },
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
