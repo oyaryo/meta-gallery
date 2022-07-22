@@ -14,7 +14,7 @@ export default async function ({ redirect }) {
       console.log("Checked out.");
       return;
     } else {
-      redirect("ShopPage");
+      // redirect("ShopPage");
     }
   });
 }

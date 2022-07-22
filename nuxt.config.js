@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { STRIPE_PUBLISHABLE_KEY } = process.env;
 import colors from "vuetify/es5/util/colors";
+import axios from "axios";
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
