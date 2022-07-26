@@ -15,9 +15,15 @@
 
     <v-container>
       <div class="flex justify-center">
-        <div class="mt-8 w-10/12 border border-dotted border-gray-400 bg-gray-50">
+        <div
+          class="mt-8 w-10/12 border border-dotted border-gray-400 bg-gray-50"
+        >
           <div class="text-center font-bold">What's New</div>
-          <div v-for="content in contents" :key="content.id" class="m-4">
+          <div
+            v-for="content in contents.slice(0, 3)"
+            :key="content.id"
+            class="m-4"
+          >
             <nuxt-link :to="`/${content.id}`">
               {{ content.title }}({{ content.publishedAt | dayFormat }})
             </nuxt-link>
@@ -168,7 +174,7 @@ a:link {
   color: #1f2937;
 }
 a:visited {
-  color: #64748b
+  color: #64748b;
 }
 
 .dotted-border-bottom {

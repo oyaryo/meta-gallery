@@ -1,9 +1,19 @@
 <template>
   <div>
     <v-container>
-      <h1 class="text-2xl font-bold p-4">{{ data.title }}</h1>
-      <p class="p-4">{{ data.publishedAt | dayFormat }}</p>
-      <div class="p-4" v-html="data.content"></div>
+      <v-row>
+        <v-col cols="4"
+          ><p class="font-serif text-7xl">NEWS</p>
+          <p class="font-serif font-light">更新情報</p></v-col
+        >
+        <v-col cols="8">
+          <h1 class="font-bold text-3xl my-4">{{ data.title }}</h1>
+          <p class="text-sm font-light my-2">
+            {{ data.publishedAt | dayFormat }}
+          </p>
+          <div class="font-serif leading-relaxed" v-html="data.content"></div
+        ></v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
