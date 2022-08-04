@@ -9,6 +9,8 @@
         </v-row>
       </v-layout>
     </v-container>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
   </div>
 </template>
 
@@ -29,7 +31,14 @@ export default {
   },
 
   middleware: "checkTicket",
-  
+
+  head() {
+    return {
+      script: [{ src: "/head.js" }],
+      script: [{ src: "/body.js", body: true }],
+    };
+  },
+
   data() {
     return {
       unityContext: Unity,
